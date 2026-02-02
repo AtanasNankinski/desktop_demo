@@ -1,3 +1,4 @@
+import 'package:desktop_demo/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:window_manager/window_manager.dart';
@@ -8,9 +9,9 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = WindowOptions(
-    size: Size(1440, 1024),
-    maximumSize: Size(1440, 1024),
-    minimumSize: Size(1440, 1024),
+    size: Size(WINDOW_WIDTH, WINDOW_HEIGHT),
+    maximumSize: Size(WINDOW_WIDTH, WINDOW_HEIGHT),
+    minimumSize: Size(WINDOW_WIDTH, WINDOW_HEIGHT),
     fullScreen: false,
     center: true,
     skipTaskbar: false,
