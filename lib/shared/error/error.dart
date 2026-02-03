@@ -12,7 +12,7 @@ class AppError extends Equatable {
   List<Object?> get props => [title, description];
 
   factory AppError.fromException(Object error) {
-    final exception = DemoAppException.generate(error);
+    final exception = AppException.generate(error);
 
     return AppError(
       exception.getTitle(exception as ExceptionDataMixin) ?? "",
@@ -21,11 +21,11 @@ class AppError extends Equatable {
   }
 }
 
-class DemoAppException implements Exception {
-  DemoAppException();
+class AppException implements Exception {
+  AppException();
 
-  static DemoAppException generate(dynamic error) {
-    if(error is DemoAppException) {
+  static AppException generate(dynamic error) {
+    if(error is AppException) {
       return error;
     }
 
@@ -47,7 +47,7 @@ mixin ExceptionDataMixin {
   String? description();
 }
 
-final class DefaultException extends DemoAppException with ExceptionDataMixin {
+final class DefaultException extends AppException with ExceptionDataMixin {
   DefaultException();
 
   @override
