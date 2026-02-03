@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:desktop_demo/shared/components/base_layout.dart';
 import 'package:desktop_demo/shared/extentions/text.dart';
+import 'package:desktop_demo/shared/router/router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,11 +14,21 @@ class HomeScreen extends StatelessWidget {
         "Home Screen",
         style: context.appBarTitle,
       ),
-      child: Center(
-        child: Text(
-          "Home Screen",
-          style: context.titleLarge,
-        ),
+      child: Column(
+        children: [
+          Spacer(),
+          Text(
+            "Home Screen",
+            style: context.titleLarge,
+          ),
+          ElevatedButton(
+            onPressed: (){
+              Routes.dataPage.replace(context);
+            },
+            child: Text("Data Screen"),
+          ),
+          Spacer(),
+        ],
       ),
     );
   }

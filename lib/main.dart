@@ -1,4 +1,5 @@
 import 'package:desktop_demo/presentation/feature/home/home_page.dart';
+import 'package:desktop_demo/shared/router/router.dart';
 import 'package:flutter/material.dart';
 
 import 'package:window_manager/window_manager.dart';
@@ -32,10 +33,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final _appRouter = AppRouter();
+
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
       title: 'Desktop Demo',
       theme: AppTheme.lightTheme,
-      home: const HomePage(),
     );
   }
 }
