@@ -11,4 +11,8 @@ class AppColors {
 
   // Component colors
   static final modalBarrierColor = Color(0x80FFFFFF);
+  static final buttonColor = Color(0xFF1A87CA);
+  static final disabledButtonColor = Color(0xFF59B5EE);
+  static final buttonTextColor = Colors.white;
+  static final dialogBackgroundColor = Colors.white;
 }

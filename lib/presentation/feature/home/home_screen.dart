@@ -1,11 +1,15 @@
+import 'package:desktop_demo/shared/components/common_button.dart';
+import 'package:desktop_demo/shared/extentions/common.dart';
 import 'package:flutter/material.dart';
+
+import 'package:desktop_demo/shared/router/router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:desktop_demo/shared/components/base_layout.dart';
 import 'package:desktop_demo/shared/extentions/text.dart';
 import 'package:desktop_demo/presentation/feature/home/state/home_cubit.dart';
 import 'package:desktop_demo/shared/base/base_bloc_builder.dart';
 import 'package:desktop_demo/shared/base/base_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -22,21 +26,26 @@ class HomeScreen extends StatelessWidget {
       child: BaseBlocBuilder<HomeCubit, BaseState>(
         builder: (context, state) {
           return Column(
-            children: [
+            children: <Widget>[
               Spacer(),
               Text(
                 "Home Screen",
                 style: context.titleLarge,
               ),
-              ElevatedButton(
+              CommonButton(
                 onPressed: () async {
                   await stateNotifier.onAction(TestError());
-                  //Routes.dataPage.replace(context);
                 },
-                child: Text("Data Screen"),
+                text: "Test Error",
+              ),
+              CommonButton(
+                onPressed: () {
+                  Routes.dataPage.replace(context);
+                },
+                text: "Data Screen",
               ),
               Spacer(),
-            ],
+            ].divideWith(SizedBox(height: 16,)).toList(),
           );
         }
       ),
