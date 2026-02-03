@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   window_manager: ^0.5.1
   auto_route: ^11.1.0
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.8
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +49,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  bloc_lint: ^0.3.6
   auto_route_generator: ^10.2.4
   build_runner:
 

@@ -1,14 +1,17 @@
-import 'package:desktop_demo/presentation/feature/home/home_page.dart';
-import 'package:desktop_demo/shared/router/router.dart';
 import 'package:flutter/material.dart';
 
 import 'package:window_manager/window_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:desktop_demo/shared/theme/theme.dart';
 import 'package:desktop_demo/shared/utils/constants.dart';
+import 'package:desktop_demo/app_observer.dart';
+import 'package:desktop_demo/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Bloc.observer = AppObserver();
+
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = WindowOptions(
@@ -25,20 +28,5 @@ void main() async {
     await windowManager.focus();
   });
 
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
-
-    return MaterialApp.router(
-      routerConfig: _appRouter.config(),
-      title: 'Desktop Demo',
-      theme: AppTheme.lightTheme,
-    );
-  }
+  runApp(const App());
 }

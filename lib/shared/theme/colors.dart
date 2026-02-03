@@ -8,4 +8,7 @@ class AppColors {
   // Text Colors
   static final textColor = Color(0xFF747474);
   static final appBarTitleColor = Colors.white;
+
+  // Component colors
+  static final modalBarrierColor = Color(0x80FFFFFF);
 }
