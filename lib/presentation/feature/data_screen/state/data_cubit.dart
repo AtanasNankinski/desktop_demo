@@ -19,23 +19,6 @@ class DataCubit extends BaseCubit<DataState> {
       emit(state.copyWith(data: data,));
     });
   }
-
-  @override
-  void onError(Object error, StackTrace stackTrace) {
-    emit(state.copyWith(uiState: UiState.error, error: AppError.fromException(error)));
-
-    super.onError(error, stackTrace);
-  }
-
-  @override
-  void onActionCompleted() {
-    emit(DataState(state.data, UiState.normal, null));
-  }
-
-  @override
-  void onLoading() {
-    emit(state.copyWith(uiState: UiState.loading));
-  }
 }
 
 class DataState extends BaseState with EquatableMixin {

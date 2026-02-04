@@ -15,6 +15,8 @@ abstract class BaseCubit<T extends BaseState> extends Cubit<T> {
       await action();
       onActionCompleted();
     } catch(e, st) {
+      final error = AppError.fromException(e);
+      emit(state.failure(error) as T);
       addError(e, st);
     } finally {
       if(state.uiState == UiState.error) {
@@ -26,7 +28,11 @@ abstract class BaseCubit<T extends BaseState> extends Cubit<T> {
     }
   }
 
-  void onLoading();
+  void onLoading() {
+    emit(state.loading() as T);
+  }
 
-  void onActionCompleted();
+  void onActionCompleted() {
+    emit(state.normal() as T);
+  }
 }
