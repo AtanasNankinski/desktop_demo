@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
               ),
               CommonButton(
                 onPressed: () {
-                  Routes.dataPage.replace(context);
+                  Routes.dataPage.push(context);
                 },
                 text: "Data Screen",
               ),

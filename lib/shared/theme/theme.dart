@@ -26,9 +26,24 @@ class AppTheme {
       fontSize: 20,
       fontWeight: FontWeight.w500,
     ),
+    titleSmall: TextStyle(
+      color: AppColors.textColor,
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+    ),
     bodyLarge: TextStyle(
       color: AppColors.textColor,
       fontSize: 16,
+      fontWeight: FontWeight.normal,
+    ),
+    bodyMedium: TextStyle(
+      color: AppColors.textColor,
+      fontSize: 14,
+      fontWeight: FontWeight.normal,
+    ),
+    bodySmall: TextStyle(
+      color: AppColors.textColor,
+      fontSize: 12,
       fontWeight: FontWeight.normal,
     ),
   );
