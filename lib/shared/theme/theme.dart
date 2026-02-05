@@ -6,13 +6,14 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     appBarTheme: _appBarTheme,
     textTheme: _textTheme,
-    buttonTheme: _buttonTheme,
     elevatedButtonTheme: _elevatedButtonTheme,
     dialogTheme: _dialogTheme,
   );
 
   static final _appBarTheme = AppBarTheme(
     backgroundColor: AppColors.primaryColor,
+    iconTheme: IconThemeData(color: AppColors.appBarTitleColor),
+    titleTextStyle: _textTheme.titleMedium?.copyWith(color: AppColors.appBarTitleColor),
   );
 
   static final _textTheme = TextTheme(
@@ -48,18 +49,13 @@ class AppTheme {
     ),
   );
 
-  static final _buttonTheme = ButtonThemeData(
-    buttonColor: AppColors.buttonColor,
-    disabledColor: AppColors.disabledButtonColor,
-  );
-
   static final _elevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.buttonColor,
       foregroundColor: AppColors.buttonTextColor,
       disabledBackgroundColor: AppColors.disabledButtonColor,
       minimumSize: Size(120, 42),
-      textStyle: _textTheme.titleMedium,
+      textStyle: _textTheme.bodyLarge,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),

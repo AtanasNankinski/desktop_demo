@@ -15,4 +15,11 @@ class AppColors {
   static final disabledButtonColor = Color(0xFF59B5EE);
   static final buttonTextColor = Colors.white;
   static final dialogBackgroundColor = Colors.white;
+  static final headerColumnColor = Color(0xFFF4F4F4);
+  static final columnBorderColor = Color(0xFFD9D9D9);
+  static final categoryRowColor = Color(0xFFFBFBFB);
+  static final selectedRowColor = Color(0xFFA2A2A2);
+  static final inputFieldBorderColor = Color(0xFFA2A2A2);
+
+  static final Color inputFieldHintColor = Color(0xFFA2A2A2);
 }

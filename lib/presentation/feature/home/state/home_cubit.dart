@@ -3,6 +3,8 @@ import 'package:desktop_demo/shared/base/base_cubit.dart';
 import 'package:desktop_demo/shared/error/error.dart';
 import 'package:equatable/equatable.dart';
 
+part 'home_state.dart';
+
 class HomeCubit extends BaseCubit<HomeState> {
   final TestingRepository _testingRepository;
 
@@ -20,25 +22,4 @@ class HomeCubit extends BaseCubit<HomeState> {
   Future<void> _testError() async {
     await _testingRepository.testError();
   }
-}
-
-class HomeState extends BaseState with EquatableMixin{
-  HomeState(super.uiState, [super.error]);
-
-  @override
-  BaseState copyWith({UiState? uiState, AppError? error}) => HomeState(
-    uiState ?? this.uiState,
-    error ?? this.error
-  );
-
-  @override
-  List<Object?> get props => [super.uiState, super.error];
-}
-
-sealed class HomeUIEvents {
-  HomeUIEvents();
-}
-
-final class TestError extends HomeUIEvents {
-  TestError();
 }

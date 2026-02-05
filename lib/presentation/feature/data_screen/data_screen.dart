@@ -1,41 +1,114 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 
 import 'package:desktop_demo/presentation/feature/data_screen/state/data_cubit.dart';
 import 'package:desktop_demo/shared/base/base_bloc_builder.dart';
-import 'package:desktop_demo/shared/components/base_layout.dart';
-import 'package:desktop_demo/shared/extentions/text.dart';
+import 'package:desktop_demo/shared/components/columns.dart';
+import 'package:desktop_demo/shared/components/common_button.dart';
+import 'package:desktop_demo/shared/theme/colors.dart';
+import 'package:desktop_demo/shared/components/text_field.dart';
+import 'package:desktop_demo/shared/router/router.dart';
 
-class DataScreen extends StatelessWidget {
+part 'components/table_components.dart';
+
+class DataScreen extends StatefulWidget {
   const DataScreen({super.key});
 
   @override
+  State<DataScreen> createState() => _DataScreenState();
+}
+
+class _DataScreenState extends State<DataScreen> {
+  final DataGridController _dataGridController = DataGridController();
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
+    //state variables
     final stateNotifier = context.read<DataCubit>();
 
-    return BaseLayout(
-      hasIntrinsicHeight: false,
-      title: Text(
-        "Data Screen",
-        style: context.appBarTitle,
+    //util values
+    final selectedIndex = _dataGridController.selectedIndex;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Data Screen"),
+        centerTitle: true,
       ),
-      child: BaseBlocBuilder<DataCubit, DataState>(
+      body: BaseBlocBuilder<DataCubit, DataState>(
         isLoadingGlobal: true,
         builder: (context, state) =>
-          Column(
-            children: [
-              Text(
-                "Data Screen",
-                style: context.titleLarge,
+        Column(
+          children: [
+            SizedBox(height: 16,),
+            Stack(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AppTextField.search(controller: _searchController),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AppButton.short(
+                      onPressed: () async {
+                        await stateNotifier.onAction(SearchUiEvent(_searchController.text));
+                      },
+                      text: "Search",
+                    ),
+                    SizedBox(width: 16,),
+                    AppButton.short(
+                      isActive: (selectedIndex != -1),
+                      onPressed:() {
+                        print(stateNotifier.state.exampleData[selectedIndex]);
+
+                        Routes.properties.push(context);
+                      },
+                      text: "Open",
+                    ),
+                    SizedBox(width: 16,),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 16,),
+            Expanded(
+              child: SfDataGridTheme(
+                data: SfDataGridThemeData(
+                  selectionColor: AppColors.selectedRowColor,
+                  gridLineColor: AppColors.columnBorderColor,
+                  gridLineStrokeWidth: 1,
+                ),
+                child: SfDataGrid(
+                  source: stateNotifier.state.gridData,
+                  selectionMode: SelectionMode.single,
+                  controller: _dataGridController,
+                  onSelectionChanged: (addedRows, removedRows) {
+                    setState(() {});
+                  },
+                  columns: _headerColumns(),
+                  stackedHeaderRows: _categoryHeaders(),
+                ),
               ),
-              SizedBox(height: 16,),
-              Text(stateNotifier.state.data.length.toString()),
-              SizedBox(height: 16,),
-              for(var data in state.data) Text(data.toString()),
-            ],
-          ),
+            ),
+          ]
+        ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _dataGridController.dispose();
+    _searchController.dispose();
+
+    super.dispose();
   }
 }

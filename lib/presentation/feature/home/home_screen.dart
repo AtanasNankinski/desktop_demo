@@ -32,13 +32,13 @@ class HomeScreen extends StatelessWidget {
                 "Home Screen",
                 style: context.titleLarge,
               ),
-              CommonButton(
+              AppButton.primary(
                 onPressed: () async {
                   await stateNotifier.onAction(TestError());
                 },
                 text: "Test Error",
               ),
-              CommonButton(
+              AppButton.primary(
                 onPressed: () {
                   Routes.dataPage.push(context);
                 },

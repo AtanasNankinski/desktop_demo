@@ -83,45 +83,6 @@ class ExampleData extends Equatable {
     'ov_data': ovData.map((e) => e.toJson()).toList(),
   };
 
-  /*
-  factory ExampleData.fromJson(Map<String, dynamic> map) => ExampleData(
-      map['id'] as String,
-      map['name'] as String,
-      _dateFormat.parse(map['date'] as String),
-      map['property1'] as String,
-      map['property2'] as String,
-      map['property3'] as String,
-      map['property4'] as String,
-      map['property5'] as String,
-      map['property6'] as String,
-      map['property7'] as String,
-      map['property8'] as String,
-      map['property9'] as String,
-      map['property10'] as String,
-      map['property11'] as String,
-      map['property12'] as String,
-  );
-
-  Map<String, dynamic> toJson() => <String, dynamic> {
-    'id': id,
-    'name': name,
-    'date': _dateFormat.format(date),
-    'property1': property1,
-    'property2': property2,
-    'property3': property3,
-    'property4': property4,
-    'property5': property5,
-    'property6': property6,
-    'property7': property7,
-    'property8': property8,
-    'property9': property9,
-    'property10': property10,
-    'property11': property11,
-    'property12': property12,
-  };
-
-   */
-
   @override
   String toString() {
     return 'ExampleData(id: $id, name: $name, date: $date, property1: $property1, property2: $property2, property3: $property3, property4: $property4, property5: $property5, property6: $property6, property7: $property7, property8: $property8, property9: $property9, property10: $property10, property11: $property11, property12: $property12, the length of omData is: ${omData.length}, the length of ovData is: ${ovData.length})';
