@@ -68,7 +68,7 @@ class _DataScreenState extends State<DataScreen> {
                     AppButton.short(
                       isActive: (selectedIndex != -1),
                       onPressed:() {
-                        final data = state.exampleData[selectedIndex];
+                        final data = state.filteredData[selectedIndex];
 
                         print(data);
 

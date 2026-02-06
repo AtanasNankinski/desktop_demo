@@ -12,7 +12,7 @@ part 'data_events.dart';
 class DataCubit extends BaseCubit<DataState> {
   final DataRepository _dataRepository;
 
-  DataCubit(this._dataRepository) : super(DataState([], ExampleDataSource(exampleData: []), UiState.normal)) {
+  DataCubit(this._dataRepository) : super(DataState([], ExampleDataSource(exampleData: []), [], UiState.normal)) {
     _init();
   }
 
@@ -30,18 +30,22 @@ class DataCubit extends BaseCubit<DataState> {
       final data = await _dataRepository.getExampleData();
       final dataSource = ExampleDataSource(exampleData: data);
 
-      emit(state.copyWith(exampleData: data, gridData: dataSource,));
+      emit(state.copyWith(exampleData: data, filteredData: data, gridData: dataSource,));
     });
   }
 
   Future<void> _search(String query) async {
     if(query.isEmpty) {
-      await _init();
+      if(state.exampleData.isEmpty) {
+        await _init();
+      } else {
+        emit(state.copyWith(filteredData: state.exampleData, gridData: ExampleDataSource(exampleData: state.exampleData)));
+      }
     } else {
       final newExampleData = _filterExampleData(state.exampleData, query);
       final newGridData = ExampleDataSource(exampleData: newExampleData);
 
-      emit(state.copyWith(exampleData: newExampleData, gridData: newGridData));
+      emit(state.copyWith(filteredData: newExampleData, gridData: newGridData));
     }
   }
 
