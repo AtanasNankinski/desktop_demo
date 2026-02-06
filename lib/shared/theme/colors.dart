@@ -20,6 +20,10 @@ class AppColors {
   static final categoryRowColor = Color(0xFFFBFBFB);
   static final selectedRowColor = Color(0xFFA2A2A2);
   static final inputFieldBorderColor = Color(0xFFA2A2A2);
+  static final textButtonText = Color(0x60000000);
+  static final textButtonBackground = Colors.white;
+  static final textButtonBorder = Color(0xFFA2A2A2);
+  static final dividerColor = Color(0xFFD9D9D9);
 
   static final Color inputFieldHintColor = Color(0xFFA2A2A2);
 }

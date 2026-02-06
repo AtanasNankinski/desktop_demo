@@ -4,10 +4,12 @@ import 'package:desktop_demo/shared/theme/colors.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData.light().copyWith(
+    scaffoldBackgroundColor: AppColors.backgroundColor,
     appBarTheme: _appBarTheme,
     textTheme: _textTheme,
     elevatedButtonTheme: _elevatedButtonTheme,
     dialogTheme: _dialogTheme,
+    textButtonTheme: _textButtonTheme,
   );
 
   static final _appBarTheme = AppBarTheme(
@@ -58,6 +60,21 @@ class AppTheme {
       textStyle: _textTheme.bodyLarge,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
+      ),
+    ),
+  );
+
+  static final _textButtonTheme = TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: AppColors.textButtonText,
+      backgroundColor: AppColors.textButtonBackground,
+      textStyle: _textTheme.titleMedium,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          width: 1,
+          color: AppColors.textButtonBorder,
+        ),
+        borderRadius: BorderRadius.circular(8),
       ),
     ),
   );

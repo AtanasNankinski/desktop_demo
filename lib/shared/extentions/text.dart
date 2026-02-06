@@ -13,4 +13,5 @@ extension TextExtention on BuildContext {
   //Custom TextStyles
   TextStyle? get appBarTitle => Theme.of(this).textTheme.titleLarge?.copyWith(color: AppColors.appBarTitleColor);
   TextStyle? get button => Theme.of(this).textTheme.bodyLarge?.copyWith(color: AppColors.buttonTextColor, fontWeight: FontWeight.w500);
+  TextStyle? get label => Theme.of(this).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600);
 }

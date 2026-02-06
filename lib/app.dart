@@ -7,12 +7,12 @@ import 'package:desktop_demo/shared/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider<ErrorCubit>(
@@ -23,7 +23,7 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        routerConfig: _appRouter.config(),
+        routerConfig: appRouter.config(),
         title: 'Desktop Demo',
         theme: AppTheme.lightTheme,
         builder: (context, child) =>

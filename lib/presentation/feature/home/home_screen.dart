@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:desktop_demo/shared/components/common_button.dart';
 import 'package:desktop_demo/shared/extentions/common.dart';
+import 'package:desktop_demo/shared/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import 'package:desktop_demo/shared/router/router.dart';
@@ -23,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         "Home Screen",
         style: context.appBarTitle,
       ),
-      child: BaseBlocBuilder<HomeCubit, BaseState>(
+      child: BaseBlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return Column(
             children: <Widget>[
@@ -40,7 +42,7 @@ class HomeScreen extends StatelessWidget {
               ),
               AppButton.primary(
                 onPressed: () {
-                  Routes.dataPage.push(context);
+                  context.router.push(DataRoute());
                 },
                 text: "Data Screen",
               ),

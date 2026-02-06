@@ -9,7 +9,7 @@ class DataRepositoryImpl implements DataRepository {
   @override
   Future<List<ExampleData>> getExampleData() async {
     final jsonString = await rootBundle.loadString(
-      'assets/data/example_data.json',
+      'assets/data/example_data_big_10000.json',
     );
 
     final decoded = jsonDecode(jsonString) as Map<String, dynamic>;
@@ -20,5 +20,4 @@ class DataRepositoryImpl implements DataRepository {
         .map((e) => ExampleData.fromJson(e as Map<String, dynamic>))
         .toList();
   }
-
 }

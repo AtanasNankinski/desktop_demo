@@ -68,3 +68,4 @@ flutter:
 
   assets:
     - assets/data/example_data.json
+    - assets/data/.

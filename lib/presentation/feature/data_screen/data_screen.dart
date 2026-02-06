@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:desktop_demo/shared/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +12,6 @@ import 'package:desktop_demo/shared/components/columns.dart';
 import 'package:desktop_demo/shared/components/common_button.dart';
 import 'package:desktop_demo/shared/theme/colors.dart';
 import 'package:desktop_demo/shared/components/text_field.dart';
-import 'package:desktop_demo/shared/router/router.dart';
 
 part 'components/table_components.dart';
 
@@ -67,9 +68,11 @@ class _DataScreenState extends State<DataScreen> {
                     AppButton.short(
                       isActive: (selectedIndex != -1),
                       onPressed:() {
-                        print(stateNotifier.state.exampleData[selectedIndex]);
+                        final data = state.exampleData[selectedIndex];
 
-                        Routes.properties.push(context);
+                        print(data);
+
+                        context.router.push(PropertiesRoute(data: data));
                       },
                       text: "Open",
                     ),
@@ -87,7 +90,7 @@ class _DataScreenState extends State<DataScreen> {
                   gridLineStrokeWidth: 1,
                 ),
                 child: SfDataGrid(
-                  source: stateNotifier.state.gridData,
+                  source: state.gridData,
                   selectionMode: SelectionMode.single,
                   controller: _dataGridController,
                   onSelectionChanged: (addedRows, removedRows) {
