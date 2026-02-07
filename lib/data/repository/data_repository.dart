@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 
 import 'package:flutter/services.dart';
 
@@ -12,12 +13,24 @@ class DataRepositoryImpl implements DataRepository {
       'assets/data/example_data_big_10000.json',
     );
 
-    final decoded = jsonDecode(jsonString) as Map<String, dynamic>;
+    //final decoded = await Isolate.run(() {
+    //  return jsonDecode(jsonString) as Map<String, dynamic>;
+    //});
 
-    final list = decoded['example_data'] as List<dynamic>;
+    //final list = decoded['example_data'] as List<dynamic>;
 
-    return list
-        .map((e) => ExampleData.fromJson(e as Map<String, dynamic>))
-        .toList();
+    return await Isolate.run(() {
+      final decoded = jsonDecode(jsonString) as Map<String, dynamic>;
+
+      final list = decoded['example_data'] as List<dynamic>;
+
+      return list
+          .map((e) => ExampleData.fromJson(e as Map<String, dynamic>))
+          .toList();
+    });
+
+    //return list
+    //    .map((e) => ExampleData.fromJson(e as Map<String, dynamic>))
+    //    .toList();
   }
 }
