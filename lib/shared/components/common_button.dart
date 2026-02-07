@@ -6,10 +6,11 @@ import 'package:desktop_demo/shared/extentions/text.dart';
 class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double width;
-  final String text;
   final bool isActive;
+  final String? text;
+  final Widget? icon;
 
-  const AppButton({required this.onPressed, required this.width, required this.text, this.isActive = true, super.key});
+  const AppButton({required this.onPressed, required this.width, this.text, this.icon, this.isActive = true, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,13 @@ class AppButton extends StatelessWidget {
       height: 42,
       child: ElevatedButton(
         onPressed: isActive ? onPressed : null,
-        child: Center(
-          child: Text(
-            text,
-            style: context.button,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if(text != null) Text(text!),
+            if(icon != null) icon!,
+          ],
         ),
       ),
     );
@@ -31,4 +34,6 @@ class AppButton extends StatelessWidget {
   factory AppButton.primary({required VoidCallback? onPressed, required String text, bool isActive = true}) => AppButton(onPressed: onPressed, width: 160, text: text, isActive: isActive);
 
   factory AppButton.short({required VoidCallback? onPressed, required String text, bool isActive = true}) => AppButton(onPressed: onPressed, width: 120, text: text, isActive: isActive);
+
+  factory AppButton.add({required VoidCallback? onPressed, bool isActive = true}) => AppButton(onPressed: onPressed, width: 42, icon: Icon(Icons.add), isActive: isActive,);
 }

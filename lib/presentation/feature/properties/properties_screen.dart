@@ -1,4 +1,5 @@
 import 'package:desktop_demo/shared/components/columns.dart';
+import 'package:desktop_demo/shared/components/common_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -14,6 +15,7 @@ import 'package:desktop_demo/shared/components/labeled_text_field.dart';
 import 'package:desktop_demo/shared/components/app_divider.dart';
 
 part 'components/table_components.dart';
+part 'components/popup_menu.dart';
 
 class PropertiesScreen extends StatelessWidget {
   PropertiesScreen({super.key});
@@ -59,7 +61,7 @@ class PropertiesScreen extends StatelessWidget {
           prop10Controller.text = state.data.property10;
 
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ..._propertiesHeader(state: state, context: context),
               ..._textFieldsSection(state: state, context: context),
@@ -134,11 +136,26 @@ class PropertiesScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                LabeledTextField(label: "Property 3", hintText: "Property 3", controller: prop3Controller),
+                LabeledTextField(
+                  label: "Property 3",
+                  hintText: "Property 3",
+                  controller: prop3Controller,
+                  suffix: PropertiesPopupMenu(),
+                ),
                 SizedBox(height: 16,),
-                LabeledTextField(label: "Property 4", hintText: "Property 4", controller: prop4Controller),
+                LabeledTextField(
+                  label: "Property 4",
+                  hintText: "Property 4",
+                  controller: prop4Controller,
+                  suffix: PropertiesPopupMenu(),
+                ),
                 SizedBox(height: 16,),
-                LabeledTextField(label: "Property 5", hintText: "Property 5", controller: prop5Controller),
+                LabeledTextField(
+                  label: "Property 5",
+                  hintText: "Property 5",
+                  controller: prop5Controller,
+                  suffix: PropertiesPopupMenu(),
+                ),
               ],
             ),
           ),
@@ -167,6 +184,8 @@ class PropertiesScreen extends StatelessWidget {
     return [
       AppDivider(label: "Other Models"),
       SizedBox(height: 16,),
+      AppButton.add(onPressed: () {},),
+      SizedBox(height: 16,),
       SizedBox(
         height: 210,
         child: SfDataGridTheme(
@@ -192,6 +211,8 @@ class PropertiesScreen extends StatelessWidget {
   List<Widget> _ovTable({required PropertiesState state}) {
     return [
       AppDivider(label: "Variations of Example"),
+      SizedBox(height: 16,),
+      AppButton.add(onPressed: () {},),
       SizedBox(height: 16,),
       SizedBox(
         height: 210,

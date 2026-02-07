@@ -5,13 +5,14 @@ import 'package:desktop_demo/shared/extentions/text.dart';
 
 class LabeledTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String? hintText;
-  final double? width;
   final String label;
   final bool readOnly;
   final bool isBigField;
+  final String? hintText;
+  final double? width;
+  final Widget? suffix;
 
-  const LabeledTextField({required this.controller, required this.label, this.hintText, this.width, this.readOnly = false, this.isBigField = false, super.key});
+  const LabeledTextField({required this.controller, required this.label, this.hintText, this.width, this.suffix, this.readOnly = false, this.isBigField = false, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,8 @@ class LabeledTextField extends StatelessWidget {
           ),
         ),
         isBigField
-            ? AppTextField.big(controller: controller, hintText: hintText, readOnly: readOnly)
-            : AppTextField(hintText: hintText, controller: controller, width: width, readOnly: readOnly,),
+            ? AppTextField.big(controller: controller, hintText: hintText, readOnly: readOnly, suffix: suffix,)
+            : AppTextField(hintText: hintText, controller: controller, width: width, readOnly: readOnly, suffix: suffix,),
       ],
     );
   }

@@ -56,7 +56,8 @@ class AppTheme {
       backgroundColor: AppColors.buttonColor,
       foregroundColor: AppColors.buttonTextColor,
       disabledBackgroundColor: AppColors.disabledButtonColor,
-      minimumSize: Size(120, 42),
+      minimumSize: const Size(42, 42),
+      padding: EdgeInsets.zero,
       textStyle: _textTheme.bodyLarge,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
